@@ -9,7 +9,7 @@ This project shouldn't be taken as an example of how to write good code - the lo
 
 .CSF files are compressed .ESF files and can be decompressed with the included *CSFFile* tool.
 
-We use [Netty-4.1.55.Final](https://netty.io/downloads.html) for byte buffer operations, so we can use the same operations as our (in-development) server.
+We use [Netty-4.1.55.Final](https://netty.io/downloads.html) for byte buffer operations so that some parsing code can be shared between this package and our (in-development) EQOA server.
 
 ## File structure
 
