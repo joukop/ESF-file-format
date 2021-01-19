@@ -74,5 +74,6 @@ Some YouTube videos created with this package: [link](https://www.youtube.com/wa
 # Some other classes in this implementation
 - ``ObjFile``: reads the file header, maintains a dictionary of objects by their ID's, calls the appropriate loader class of an object when needed
 - ``ObjInfo``: holds information about an object, without the actual data (such as textures or vertices). The method getObj() loads the actual data.
+- ``Obj``: super class of SimpleSprite, Material, Surface, etc. They override the *load()* method which does the parsing.
 - ``ObjExport``: used to export 3D objects into Wavefront .OBJ and .MTL files. Tested with Blender only.
 - ``ObjBrowser``: tool for viewing the object hierarchy
