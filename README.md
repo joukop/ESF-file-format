@@ -76,4 +76,4 @@ Some YouTube videos created with this package: [link](https://www.youtube.com/wa
 - ``ObjInfo``: holds information about an object, without the actual data (such as textures or vertices). The method getObj() loads the actual data.
 - ``Obj``: super class of SimpleSprite, Material, Surface, etc. They override the *load()* method which does the parsing.
 - ``ObjExport``: used to export 3D objects into Wavefront .OBJ and .MTL files. Tested with Blender only.
-- ``ObjBrowser``: tool for viewing the object hierarchy
+- ``ObjBrowser``: tool for viewing the object hierarchy (dependency: JavaFX)
