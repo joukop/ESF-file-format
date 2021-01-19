@@ -1,3 +1,5 @@
+# https://github.com/jmc2obj/j-mc-2-obj/issues/132#issuecomment-639310026
+
 import bpy
 mats=bpy.context.active_object.material_slots
 for mat in mats:
