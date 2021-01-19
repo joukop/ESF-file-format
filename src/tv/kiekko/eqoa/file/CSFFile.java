@@ -27,7 +27,7 @@ public class CSFFile {
 		int i;
 		int outsize = cesfHeader.getIntLE(32);
 		System.out.println("outsize=" + outsize);
-		FileOutputStream fos = new FileOutputStream("pregame.esf");
+		FileOutputStream fos = new FileOutputStream("output-file.esf");
 		try {
 			for (int b = 0; b < num_blocks; b++) {
 				System.out.println("block=" + b + "/" + num_blocks);
