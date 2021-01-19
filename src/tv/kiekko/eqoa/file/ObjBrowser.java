@@ -1,35 +1,27 @@
 package tv.kiekko.eqoa.file;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-/* A tool for viewing the object hierarchy. Dependency: JavaFX */
-
 public class ObjBrowser extends Application {
-	static String tunariaPath = "Tunaria.esf";
 
 	public static void main(String[] args) {
-		if (args.length > 0)
-			tunariaPath = args[0];
+		if (args.length > 0) objFileName = args[0];
 		launch(args);
 	}
 
@@ -54,11 +46,38 @@ public class ObjBrowser extends Application {
 
 	ObjFile file = null;
 
+	static String objFileName = null;
+	
+	void loadFile(File f) {
+
+		list.setRoot(null);
+		
+		new Thread(() -> {
+			try {
+				file = new ObjFile(f);
+				ObjInfo root = file.getRoot();
+
+				Platform.runLater(() -> {
+					rootPane.setCenter(list);
+					list.setRoot(new ObjNodeItem(root));
+				});
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}).start();
+
+	}
+
+	TreeView<ObjInfo> list;
+	
+	BorderPane rootPane;
+
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("ObjBrowser");
 
-		TreeView<ObjInfo> list = new TreeView<>();
+		list = new TreeView<>();
 
 		ImageView iv = new ImageView();
 
@@ -90,61 +109,22 @@ public class ObjBrowser extends Application {
 			}
 		});
 
-		BorderPane rootPane = new BorderPane();
-		rootPane.setCenter(new ProgressBar(ProgressBar.INDETERMINATE_PROGRESS));
+		rootPane = new BorderPane();
+		ProgressIndicator ind = new ProgressIndicator(ProgressIndicator.INDETERMINATE_PROGRESS);
+		ind.setMaxSize(100, 100);
+		rootPane.setCenter(ind);
 
-		TableView<ObjInfo> table = new TableView<>();
-		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-		TableColumn<ObjInfo, String> column1 = new TableColumn<>("ID");
-		column1.setCellValueFactory((param) -> {
-			if (param.getValue() != null)
-				return new SimpleStringProperty(String.format("%08x", param.getValue().dictID));
-			else
-				return new SimpleStringProperty("-");
-		});
-
-		TableColumn<ObjInfo, String> column2 = new TableColumn<>("Object");
-		column2.setCellValueFactory((param) -> {
-			if (param.getValue() != null)
-				return new SimpleStringProperty(param.getValue().toString());
-			else
-				return new SimpleStringProperty("-");
-		});
-
-		table.getColumns().add(column1);
-		table.getColumns().add(column2);
-
-		new Thread(() -> {
-			try {
-				file = new ObjFile(tunariaPath);
-				ObjInfo root = file.getRoot();
-
-				Platform.runLater(() -> {
-					rootPane.setCenter(list);
-					list.setRoot(new ObjNodeItem(root));
-					// table.setItems(FXCollections.observableArrayList(root.getDictionary().values()));
-				});
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}).start();
-
-		TabPane tabs = new TabPane();
-
-		/*
-		 * HBox box = new HBox(); Button export = new Button("Export");
-		 * export.setOnAction((e) -> {
-		 * 
-		 * }); box.getChildren().add(export); rootPane.setTop(box);
-		 */
 		rootPane.setRight(iv);
 
-		tabs.getTabs().add(new Tab("ObjFile", rootPane));
-		// tabs.getTabs().add(new Tab("Dictionary", table));
-
-		primaryStage.setScene(new Scene(tabs, 300, 250));
+		primaryStage.setScene(new Scene(rootPane, 400, 600));
 		primaryStage.show();
+
+		FileChooser fileChooser = new FileChooser();
+		if (objFileName == null) {
+			File selectedFile = fileChooser.showOpenDialog(primaryStage);
+			loadFile(selectedFile);
+		} else {
+			loadFile(new File(objFileName));
+		}
 	}
 }
