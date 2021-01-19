@@ -1,3 +1,5 @@
+# .OBJ files imported to Blender have "seams" in some textures.
+# This script fixes them. Source:
 # https://github.com/jmc2obj/j-mc-2-obj/issues/132#issuecomment-639310026
 
 import bpy
