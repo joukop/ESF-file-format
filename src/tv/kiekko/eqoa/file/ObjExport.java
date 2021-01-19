@@ -209,6 +209,9 @@ public class ObjExport {
 		return s;
 	}
 
+	
+	// Only one material layer is exported, not sure how to implement several layers in OBJ/MTL
+	
 	String exportPrimBufferMaterials(PrimBuffer pb, String filename, List<MaterialPalette> extra_mats)
 			throws IOException {
 		MaterialPalette matpal = pb.matpal;
