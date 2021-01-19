@@ -15,7 +15,7 @@ import io.netty.buffer.Unpooled;
 public class CSFFile {
 
 	public static void main(String[] a) throws IOException {
-		FileInputStream fis = new FileInputStream("/mnt4/data2/pregame.csf");
+		FileInputStream fis = new FileInputStream("/path/to/file.csf");
 		ByteBuf cesfHeader = Unpooled.buffer(40);
 		cesfHeader.writeBytes(fis, 40);
 		ByteBuf sizebuf = Unpooled.buffer(8);
