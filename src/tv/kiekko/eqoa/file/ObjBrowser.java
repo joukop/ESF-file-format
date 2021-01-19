@@ -22,7 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-/* A tool for viewing the object hierarchy */
+/* A tool for viewing the object hierarchy. Dependency: JavaFX */
 
 public class ObjBrowser extends Application {
 	static String tunariaPath = "Tunaria.esf";
