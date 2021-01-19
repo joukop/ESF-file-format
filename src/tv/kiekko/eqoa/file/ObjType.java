@@ -80,9 +80,6 @@ public class ObjType {
 	String name;
 	Integer dictIdOffset; // TODO: they're all at zero? could just use a boolean
 
-	// voiskohan myös käyttää reflectionia ettei tarviisi kahta pitkää listaa
-	// esim lista luokkien nimistä, luokassa voisi olla static TYPE_ID=0x1110 jne
-
 	public boolean hasID() {
 		return dictIdOffset != null;
 	}
@@ -106,6 +103,8 @@ public class ObjType {
 		}
 		return false;
 	}
+	
+	// TODO: some kind of more compact/easy/automated way of defining ObjTypes
 
 	static List<ObjType> objTypes = new ArrayList<>();
 	static Map<Integer, ObjType> objTypeMap = new HashMap<>();
