@@ -7,6 +7,8 @@ Many things are still unimplemented but most of the 3D objects probably work. Lo
 
 This project shouldn't be taken as an example of how to write good code - the loader was written in less than a week in January 2021 and about another week was spent re-thinking the class structure, cleaning up, adding support for some additional object types, writing comments, etc.  
 
+.CSF files are compressed .ESF files and can be decompressed with the included *CSFFILE* tool.
+
 We use [Netty-4.1.55.Final](https://netty.io/downloads.html) for byte buffer operations, so we can use the same operations as our (in-development) server.
 
 ## File structure
