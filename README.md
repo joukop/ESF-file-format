@@ -1,4 +1,5 @@
-#ESF file format
+
+# ESF file format
 
 This package can be used to read .ESF and .CSF files from Everquest Online Adventures. Testing was done with the vanilla (not Frontiers) PAL version of the game.
 
@@ -8,7 +9,7 @@ This project shouldn't be taken as an example of how to write good code - the lo
 
 We use [Netty-4.1.55.Final](https://netty.io/downloads.html) for byte buffer operations, so we can use the same operations as our (in-development) server.
 
-##File structure
+## File structure
 
 `|File header|Object 1 header|Object 1 body|Object 2 header|Object 2 body| ...`
 
