@@ -13,7 +13,7 @@ We use [Netty-4.1.55.Final](https://netty.io/downloads.html) for byte buffer ope
 
 `|File header|Object 1 header|Object 1 body|Object 2 header|Object 2 body| ...`
 
-##File header, 32 bytes
+## File header, 32 bytes
 
 - 'OBJF', char[4]
 - number of objects in the file, int32
