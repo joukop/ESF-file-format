@@ -1,0 +1,6 @@
+/bin/
+*.so
+test.*
+test_tex/
+lib/jme/
+/lib/
