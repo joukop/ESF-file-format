@@ -15,10 +15,15 @@ import tv.kiekko.eqoa.geom.Point;
 
 /*
  * PrimBuffer contains the vertices, texture U and V, faces (triangle strips), their normals,
- * and information about their materials.
+ * and information about texturing.
  * 
  * There's also code here for exporting this data into .OBJ and .MTL files (should probably
  * be refactored to another class).
+ *
+ * Vertex x, y, z, u, and v are stored as 16-bit integers. They are converted to world
+ * coordinates by multiplying with a "packing factor" and usually adding certain values
+ * from the zone's preTranslation table, based on vertex group, a 16-bit integer stored
+ * after the coordinate data. Normals are stored as three bytes.
  * 
  */
 
