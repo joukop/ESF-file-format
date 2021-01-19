@@ -3,4 +3,4 @@
 test.*
 test_tex/
 lib/jme/
-/lib/
+lib/*.jar
