@@ -111,7 +111,7 @@ public class ObjType {
 	static {
 		objTypes.add(new ObjType(0x1001, "SurfaceArray"));
 		objTypes.add(new ObjType(0x1000, "Surface", 0));
-		objTypes.add(new ObjType(0x1110, "MatPalContainer"));
+		objTypes.add(new ObjType(0x1110, "MaterialPalette"));
 		objTypes.add(new ObjType(0x1100, "Material"));
 		objTypes.add(new ObjType(0x1101, "MaterialArray"));
 		objTypes.add(new ObjType(0x1111, "MaterialPaletteHeader", 0));
