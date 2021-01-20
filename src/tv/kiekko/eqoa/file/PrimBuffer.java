@@ -263,7 +263,7 @@ public class PrimBuffer extends Obj {
 	public void load() throws IOException {
 		seek();
 		int ver = info.version;
-		debug("ver" + ver);
+		debug("ver " + ver);
 		if (ver == 0) {
 			loadPrimBufferV0();
 			return;
@@ -331,6 +331,23 @@ public class PrimBuffer extends Obj {
 					if (preTranslations != null)
 						p.addTo(preTranslations[vgroup]);
 					addVertex(p, u * packing2, v * packing2, normal, color, vgroup);
+				}
+				end();
+			} else if (pbtype == 5) {
+				setMaterial(mat, 0);
+				begin();
+				currentList.layers = 1;
+				for (int i=0; i<nverts; i++) {
+					short x = readShort();
+					short y = readShort();
+					short z = readShort();
+					short u = readShort();
+					short v = readShort();
+					readBytes(normal);
+					readBytes(color); // bones
+					readBytes(color); // weights
+					Point p = new Point(x * packing1, y * packing1, z * packing1);
+					addVertex(p, u * packing2, v * packing2, normal, color, (short)-1);
 				}
 				end();
 			} else {
