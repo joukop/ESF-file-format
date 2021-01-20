@@ -14,6 +14,7 @@ public class ObjType {
 	public static final int MaterialArray = 0x1101;
 	public static final int Material = 0x1100;
 	public static final int PrimBuffer = 0x1200;
+	public static final int SkinPrimBuffer = 0x1210;
 	public static final int SimpleSprite = 0x2000;
 	public static final int SimpleSpriteHeader = 0x2001;
 	public static final int HSprite = 0x2200;
@@ -22,9 +23,13 @@ public class ObjType {
 	public static final int HSpriteHierarchy = 0x2400;
 	public static final int SimpleSubSprite = 0x2310;
 	public static final int SimpleSubSpriteHeader = 0x2311;
+	public static final int SkinSubSprite = 0x2320;
+	public static final int SkinSubSprite2 = 0x2321;
 	public static final int HSpriteAnim = 0x2600;
 	public static final int RefMap = 0x5000;
 	public static final int CSprite = 0x2700;
+	public static final int CSpriteHeader = 0x2710;
+	public static final int CSpriteArray = 0x2800;
 	public static final int LODSprite = 0x2a10;
 	public static final int LODSpriteArray = 0x2a20;
 	public static final int PointLight = 0x2b00;
@@ -98,7 +103,7 @@ public class ObjType {
 
 	public boolean isIdContainer() {
 		if (type == ObjType.SimpleSpriteHeader || type == ObjType.GroupSpriteHeader || type == ObjType.HSpriteHeader
-				|| type == ObjType.MaterialPaletteHeader) {
+				|| type == ObjType.MaterialPaletteHeader || type==ObjType.CSpriteHeader) {
 			return true;
 		}
 		return false;
@@ -116,6 +121,7 @@ public class ObjType {
 		objTypes.add(new ObjType(0x1101, "MaterialArray"));
 		objTypes.add(new ObjType(0x1111, "MaterialPaletteHeader", 0));
 		objTypes.add(new ObjType(0x1200, "PrimBuffer", 0)); // PrimBufferV0 doesn't have an ID
+		objTypes.add(new ObjType(0x1210, "SkinPrimBuffer"));
 		objTypes.add(new ObjType(0x2000, "SimpleSprite"));
 		objTypes.add(new ObjType(0x2001, "SimpleSpriteHeader", 0));
 		objTypes.add(new ObjType(0x2200, "HSprite"));
@@ -126,8 +132,12 @@ public class ObjType {
 		objTypes.add(new ObjType(0x2500, "HSpriteAttachments"));
 		objTypes.add(new ObjType(0x5000, "RefMap", 0));
 		objTypes.add(new ObjType(0x2310, "SimpleSubSprite"));
+		objTypes.add(new ObjType(0x2320, "SkinSubSprite",0));
+		objTypes.add(new ObjType(0x2321, "SkinSubSprite2"));
 		objTypes.add(new ObjType(0x2600, "HSpriteAnim"));
 		objTypes.add(new ObjType(0x2700, "CSprite"));
+		objTypes.add(new ObjType(0x2710, "CSpriteHeader",0));
+		objTypes.add(new ObjType(0x2800, "CSpriteArray"));
 		objTypes.add(new ObjType(0x2a10, "LODSprite", 0));
 		objTypes.add(new ObjType(0x2a20, "LodSpriteArray"));
 		objTypes.add(new ObjType(0x2b00, "PointLight"));

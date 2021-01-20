@@ -129,31 +129,15 @@ public class ObjFile {
 		case ObjType.HSpriteHierarchy:
 			obj = new HSprite.HSpriteHierarchy(info);
 			break;
-
-		/*
-		 * case ObjType.ZoneResources: break; case ObjType.HSpriteAnim: break; case
-		 * ObjType.CSprite: break; case ObjType.PointLight: break; case
-		 * ObjType.GroupSprite2: break; case ObjType.GroupSpriteMembers: break; case
-		 * ObjType.StreamAudioSprite: break; case ObjType.PointSprite: break; case
-		 * ObjType.FloraSprite: break; case ObjType.ZoneBase: break; case
-		 * ObjType.ZoneTree: break; case ObjType.ZoneRooms: break; case
-		 * ObjType.ZoneRoom: break; case ObjType.ZoneRoomActors: break; case
-		 * ObjType.ZoneRoomActors2: break; case ObjType.ZoneRoomStaticLightings: break;
-		 * case ObjType.ZoneRoomStaticLightings2: break; case
-		 * ObjType.ZoneStaticLightnings: break; case ObjType.ZoneStaticTable: break;
-		 * case ObjType.ZoneFlora: break; case ObjType.StaticLighting: break; case
-		 * ObjType.StaticLightingObj: break; case ObjType.ZoneRoomStaticLightings3:
-		 * break; case ObjType.ZoneRoomActors3: break; case ObjType.Font: break; case
-		 * ObjType.Root: break; case ObjType.World: break; case ObjType.WorldBase:
-		 * break; case ObjType.WorldBaseHeader: break; case ObjType.WorldTree: break;
-		 * case ObjType.WorldRegions: break; case ObjType.ResourceTable: break; case
-		 * ObjType.ResourceDir: break; case ObjType.ResourceDir2: break; case
-		 * ObjType.Adpcm: break; case ObjType.ParticleDefinition: break; case
-		 * ObjType.Xm: break; case ObjType.SoundSprite: break; case ObjType.SpellEffect:
-		 * break; case ObjType.ParticleSprite: break; case ObjType.EffectVolumeSprite:
-		 * break;
-		 */
-
+		case ObjType.CSprite:
+			obj = new CSprite(info);
+			break;
+		case ObjType.SkinSubSprite:
+			obj = new SkinSubSprite(info);
+			break;
+		case ObjType.SkinPrimBuffer:
+			obj = new PrimBuffer(info);
+			break;
 		// If we haven't implemented a class for this object type, create a generic Obj
 
 		default:
