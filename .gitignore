@@ -4,3 +4,6 @@ test.*
 test_tex/
 lib/jme/
 lib/*.jar
+.classpath
+.project
+.settings
