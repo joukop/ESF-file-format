@@ -2,8 +2,7 @@
 *.so
 test.*
 test_tex/
-lib/jme/
-lib/*.jar
+lib/
 .classpath
 .project
 .settings
