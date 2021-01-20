@@ -61,9 +61,8 @@ public class ObjInfo {
 
 	public ObjInfo(ObjFile file, ObjInfo parent) throws IOException {
 		this.file = file;
-		type = file.buf.readIntLE();
-		version = type >> 16;
-		type = type & 0xffff;
+		type = file.buf.readShortLE() & 0xffff;
+		version = file.buf.readShortLE();
 		size = file.buf.readIntLE();
 		numSubObjects = file.buf.readIntLE();
 		offset = file.buf.readerIndex();
