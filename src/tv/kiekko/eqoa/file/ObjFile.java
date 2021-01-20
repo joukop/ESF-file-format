@@ -191,8 +191,7 @@ public class ObjFile {
 	// map the file as a Netty buffer so we can use the same parsing methods as with
 	// UDP packets
 
-	public ObjFile(String filename) throws IOException {
-		File f = new File(filename);
+	public ObjFile(File f) throws IOException {
 		FileInputStream fis = new FileInputStream(f);
 		FileChannel fc = fis.getChannel();
 		MappedByteBuffer mappedBuf = fc.map(FileChannel.MapMode.READ_ONLY, 0, f.length());
@@ -203,6 +202,10 @@ public class ObjFile {
 			throw new IOException("missing OBJF magic");
 	}
 
+	public ObjFile(String filename) throws IOException {
+		this(new File(filename));
+	}
+	
 	public void seek(long offset) {
 		buf.readerIndex((int) offset);
 	}
