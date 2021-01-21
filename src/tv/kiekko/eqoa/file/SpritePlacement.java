@@ -30,7 +30,7 @@ public class SpritePlacement {
 	public SpritePlacement(SimpleSprite s) {
 		sprite = s;
 		pos = new Point(0, 0, 0);
-		rot = pos;
+		rot = new Point(0, 0, 0);
 	}
 
 	public SpritePlacement(SimpleSprite s, SpritePlacement p) {
