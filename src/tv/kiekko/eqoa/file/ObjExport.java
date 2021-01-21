@@ -22,6 +22,7 @@ public class ObjExport {
 	List<MaterialPalette> bigMats = new ArrayList<MaterialPalette>();
 	float sizeCutoff = 0;
 	int smallObjects = 0;
+	int exportType = 0;	// 0 = primbuffer, 1 = collbuffer
 
 	public ObjExport() throws IOException {
 		prim = new PrimBuffer(null);
@@ -75,10 +76,14 @@ public class ObjExport {
 			add(sp, file);
 		}
 	}
+	
+	public void setExportType(int t) {
+		exportType = t;
+	}
+	
 
 	public void add(SpritePlacement sp, ObjFile file) throws IOException {
 		SimpleSprite s = sp.getSprite(file);
-		PrimBuffer pb = s.getPrimBuffer();
 
 		// don't omit even small pieces of ground SimpleSubSprites
 		// TODO: check if it's actually a piece of terrain and not other SimpleSubSprite
@@ -88,6 +93,37 @@ public class ObjExport {
 			smallObjects++;
 			return;
 		}
+		if (exportType == 0)
+			addPrimBuffer(sp,file,s);
+		else
+			addCollBuffer(sp,file,s);
+	}
+	
+	void addCollBuffer(SpritePlacement sp, ObjFile f, SimpleSprite s) throws IOException {
+		CollBuffer cb = s.getCollBuffer();
+		ObjFile.debug("export adding collbuffer s=" + s + " sp=" + sp);
+		boolean first = true;
+		for (CollBuffer.VertexList list : cb.getVertexLists())  {
+			prim.begin();
+			boolean skip = false;
+			for (CollBuffer.Vertex v : list.vertices ) {
+				Point p = v.getXYZ();
+				if (sp != null) {
+					sp.transform(p);
+				}
+				prim.addVertex(p);
+				if (first) {
+					first = false;
+					prim.addComment(s.toString());
+				}
+			}
+			// if (skip) prim.cancel(); else
+			prim.end();
+		}
+	}
+	
+	void addPrimBuffer(SpritePlacement sp, ObjFile f, SimpleSprite s) throws IOException {
+		PrimBuffer pb = s.getPrimBuffer();
 
 		ObjFile.debug("export: adding s=" + s + " sp=" + sp);
 
@@ -109,6 +145,7 @@ public class ObjExport {
 			boolean skip = false;
 			for (PrimBuffer.Vertex v : list.vertices) {
 				Point p = v.getXYZ();
+				p.sanityCheck();
 				float[] color = v.getColor();
 				float[] uv = v.getUV();
 				Point normal = v.getNormal();
