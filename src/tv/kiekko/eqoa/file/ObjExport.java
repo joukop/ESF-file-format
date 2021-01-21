@@ -145,7 +145,6 @@ public class ObjExport {
 			boolean skip = false;
 			for (PrimBuffer.Vertex v : list.vertices) {
 				Point p = v.getXYZ();
-				p.sanityCheck();
 				float[] color = v.getColor();
 				float[] uv = v.getUV();
 				Point normal = v.getNormal();
