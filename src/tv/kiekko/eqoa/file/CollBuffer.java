@@ -122,7 +122,17 @@ public class CollBuffer extends Obj {
 			int num = readInt();
 			int primg = readInt();
 			int list = readInt();
-			if (cbtype == 3) {
+			if (cbtype == 1) {
+				begin(list);
+				for (int j=0; j < num; j++) {
+					int x = readShort();
+					int y = readShort();
+					int z = readShort();
+					Point v = new Point(x * p, y * p, z * p);
+					addVertex(v,-1,-1);
+				}
+				end();
+			} else if (cbtype == 3) {
 				begin(list);
 				for (int j = 0; j < num; j++) {
 					int x = readShort();
