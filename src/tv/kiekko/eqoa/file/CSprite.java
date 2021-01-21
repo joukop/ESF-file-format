@@ -53,7 +53,6 @@ public class CSprite extends GroupSprite {
 				continue;
 			}
 			placements.add(new SpritePlacement((SimpleSprite)subsprite));
-			break;
 		}
 	}
 	
