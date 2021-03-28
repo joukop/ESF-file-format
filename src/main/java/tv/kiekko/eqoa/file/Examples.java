@@ -82,6 +82,53 @@ public class Examples {
 		e.center();
 		e.write("test.obj");
 	}
+	
+
+	/*
+	Loading NPC models from Chars.ESF (change tunariaPath or argument).
+	This code was used to produce this video: https://www.youtube.com/watch?v=hZ9TE_lVc_g
+	Exporting a model is quite simple, most of this code is to place them in neat rows.
+	*/
+	
+	static void mobTest(ObjFile file) throws Exception {
+		file.parse();
+		ObjExport e=new ObjExport();
+		float offx=0;
+		float offz=0;
+		Box columnBox=new Box();
+		for (ObjInfo c : file.getRoot().getChild(ObjType.ResourceDir2).getChildren()) {
+			Box spriteBox=null;
+			Obj o=c.getObj();
+			if (o instanceof CSprite) {
+				CSprite cs=(CSprite)o;
+				for (SpritePlacement sp : cs.getSprites()) {
+					sp.pos.x=offx;
+					sp.pos.z=offz;
+					e.add(sp, file);
+					spriteBox=sp.getSprite(file).getPrimBuffer().box;
+				}
+			} else if (o instanceof SimpleSprite) {
+				SimpleSprite ss=(SimpleSprite)o;
+				SpritePlacement sp=new SpritePlacement(ss);
+				sp.pos.x=offx;
+				sp.pos.z=offz;
+				e.add(sp, file);
+				spriteBox=sp.getSprite(file).getPrimBuffer().box;
+			}
+			if (spriteBox!=null && !spriteBox.isEmpty()) {
+				columnBox.add(spriteBox);
+				offx+=spriteBox.getDimensions().x*1.5f;
+				if (offx > 30) {
+					offx=0;
+					offz+=columnBox.getDimensions().z*1.5f;
+					columnBox.clear();
+				}
+			}
+		}
+		e.center();
+		e.write("test.obj");
+	}
+	
 
 	public static void main(String[] a) throws Exception {
 		String tunariaPath = "Tunaria.esf";

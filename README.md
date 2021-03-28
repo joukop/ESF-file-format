@@ -56,6 +56,10 @@ The ``Examples`` class has some examples of using this library to extract data f
 
 Some YouTube videos created with this package: [link](https://www.youtube.com/watch?v=7nm-pxD5xP8&list=PLSdoxXXW_vHCDT0EaQsc1IGtfGIXNLdhP)
 
+The code is a part of our [EQOA server project](https://sandstorm.kiekko.tv).
+
+A zoomable map of Tunaria and some other worlds: [link](https://sandstorm.kiekko.tv/map/), generated from the game .ESF files using this library.
+
 
 # Types of objects in ESF files
 
