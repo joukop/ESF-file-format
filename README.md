@@ -11,6 +11,7 @@ This project shouldn't be taken as an example of how to write good code - the lo
 
 We use [Netty-4.1.55.Final](https://netty.io/downloads.html) for byte buffer operations so that some parsing code can be shared between this package and our (in-development) EQOA server.
 
+
 ## File structure
 
 `|File header|Object 1 header|Object 1 body|Object 2 header|Object 2 body| ...`
