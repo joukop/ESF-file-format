@@ -1,16 +1,37 @@
 
 # ESF file format
 
-This package can be used to read .ESF and .CSF files from Everquest Online Adventures. Testing was done with the vanilla (not Frontiers) PAL version of the game.
+This package can be used to read .ESF and .CSF files from EverQuest Online Adventures. Testing was done 
+with the vanilla (not Frontiers) PAL version of the game.
 
-Many things are still unimplemented but most of the 3D objects probably work. Loading e.g. terrain collision buffers is a small step towards interoperability between the PS2 game and third-party servers.
+Many things are still unimplemented, but most of the 3D objects probably work. Loading e.g. 
+terrain collision buffers is a small step towards interoperability between the PS2 game and third-party servers.
 
-This project shouldn't be taken as an example of how to write good code - the loader was written in less than a week in January 2021 and about another week was spent re-thinking the class structure, cleaning up, adding support for some additional object types, writing comments, etc.  
+This project shouldn't be taken as an example of how to write good code - the loader was written 
+in less than a week in January 2021 and about another week was spent re-thinking the class structure, 
+cleaning up, adding support for some additional object types, writing comments, etc.  
 
 .CSF files are compressed .ESF files and can be decompressed with the included *CSFFile* tool.
 
-We use [Netty-4.1.55.Final](https://netty.io/downloads.html) for byte buffer operations so that some parsing code can be shared between this package and our (in-development) EQOA server.
 
+## Getting Started
+
+This project can be built using [docker](https://www.docker.com/) or maven.
+
+### Running the Application In Docker
+
+```bash
+docker build . -t esf
+docker run esf
+```
+
+### Running the Application Using Maven
+
+```bash
+apt-get install default-jdk maven
+mvn install
+mvn exec:java -Dexec.mainClass="tv.kiekko.eqoa.App"
+```
 
 ## File structure
 
@@ -50,6 +71,7 @@ ZoneBase(3200) {
 }
 		
 ```
+
 # Examples
 
 The ``Examples`` class has some examples of using this library to extract data from ESF files. Supply the path to your Tunaria.ESF as the argument.
