@@ -6,3 +6,6 @@ lib/
 .classpath
 .project
 .settings
+target
+*.iml
+.idea/

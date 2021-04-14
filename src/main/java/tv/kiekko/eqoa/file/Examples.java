@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import tv.kiekko.eqoa.file.WorldZoneProxies.ZoneProxy;
+import tv.kiekko.eqoa.geom.Box;
 import tv.kiekko.eqoa.geom.Point;
 
 public class Examples {
@@ -88,8 +89,7 @@ public class Examples {
 	Loading NPC models from Chars.ESF (change tunariaPath or argument).
 	This code was used to produce this video: https://www.youtube.com/watch?v=hZ9TE_lVc_g
 	Exporting a model is quite simple, most of this code is to place them in neat rows.
-	*/
-	
+
 	static void mobTest(ObjFile file) throws Exception {
 		file.parse();
 		ObjExport e=new ObjExport();
@@ -128,7 +128,7 @@ public class Examples {
 		e.center();
 		e.write("test.obj");
 	}
-	
+		*/
 
 	public static void main(String[] a) throws Exception {
 		String tunariaPath = "Tunaria.esf";
